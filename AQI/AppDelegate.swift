@@ -18,8 +18,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     var menu: NSMenu!
     var timer: Timer?
     
-//    let url = URL(string: "https://www.purpleair.com/json?show=\(SENSOR_ID)")!
-    let url = URL(string: "http://127.0.0.1:8080/sample.json")!
+
+//    let url = URL(string: "http://127.0.0.1:8080/sample.json")!
+    let url = URL(string: "https://www.purpleair.com/json?show=\(SENSOR_ID)")!
+    
     var lat: String?
     var lon: String?
     var mapUrl: String?
@@ -40,9 +42,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     
     @objc func onClick(sender: NSStatusItem) {
-        
         let event = NSApp.currentEvent!
-        print("onclick", event.type, NSStatusItem.squareLength, statusItem.statusBar?.thickness)
+        
         if event.type == NSEvent.EventType.rightMouseUp {
             // right click, show quit menu
             statusItem.menu = menu;

@@ -48,6 +48,7 @@
 		B813C8E3251BD0EB00F063A3 /* AQIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AQIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B813C8E7251BD0EB00F063A3 /* AQIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQIUITests.swift; sourceTree = "<group>"; };
 		B813C8E9251BD0EB00F063A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B825CE75251C0CE9009B3DC3 /* AQI copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AQI copy-Info.plist"; path = "/Users/juno/Code/AQI/AQI copy-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +83,7 @@
 				B813C8DB251BD0EB00F063A3 /* AQITests */,
 				B813C8E6251BD0EB00F063A3 /* AQIUITests */,
 				B813C8C4251BD0E900F063A3 /* Products */,
+				B825CE75251C0CE9009B3DC3 /* AQI copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
