@@ -10,6 +10,8 @@ import SwiftUI
 
 // EDIT THIS VALUE TO THE SENSOR YOU WANT
 let SENSOR_ID: Int = 43023
+// How often to fetch data from the API
+let REFRESH_INTERVAL_SECONDS: TimeInterval = 600
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
@@ -17,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     var statusItem: NSStatusItem!
     var menu: NSMenu!
     var timer: Timer?
+    var lastFetched: Date?
     
 
 //    let url = URL(string: "http://127.0.0.1:8080/sample.json")!
@@ -37,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         
         updateAqi(nil)
         
-        timer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
         timer?.fire()
     }
     
@@ -94,6 +97,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     
     @objc func tick() {
+        if (lastFetched != nil && Date().timeIntervalSince(lastFetched!) < REFRESH_INTERVAL_SECONDS) {
+            return
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -102,7 +109,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
                 return
             }
             do {
-                
+                self.lastFetched = Date()
                 if let data = data,
                    let obj = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary,
                    let results = obj["results"] as? NSArray {
